@@ -82,5 +82,8 @@ public class Booking_Ing_TableService {
 		return order_TableList;
 		 
 	 }
+	 public void delete(String order_id) {
+		 dao.delete(order_id);
+	 }
 	 
 }

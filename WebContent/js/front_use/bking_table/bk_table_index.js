@@ -1,5 +1,19 @@
 var rs_id = $("input[name='rs_id']").val();
 
+var projectName;
+function getRootPath_web() {
+    //獲取當前網址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+    var curWwwPath = window.document.location.href;
+    //獲取主機地址之後的目錄，如： uimcardprj/share/meun.jsp
+    var pathName = window.document.location.pathname;
+    var pos = curWwwPath.indexOf(pathName);
+    //獲取主機地址，如： http://localhost:8083
+    var localhostPaht = curWwwPath.substring(0, pos);
+    //獲取帶"/"的專案名，如：/uimcardprj
+    projectName = pathName.split("/");
+
+}
+
 toastr.options = {
   progressBar: true,
   positionClass: 'toast-bottom-right',
@@ -9,6 +23,7 @@ toastr.options = {
 $(document).ready(function () {
 
   $(".wrapper").fadeOut(1000);
+  getRootPath_web();
 
 });
 setTimeout(show, 1000);
@@ -24,7 +39,7 @@ function setTable() {
 
   let json_data = JSON.stringify(form_date);
   $.ajax({
-    url: "/TEA102G1/Rest_Seat_Coordinate_Table_Getlist_Ajax.do",           // 資料請求的網址
+    url: "/"+projectName[1]+"/Rest_Seat_Coordinate_Table_Getlist_Ajax.do",           // 資料請求的網址
     type: "POST",                  // GET | POST | PUT | DELETE | PATCH
     data: json_data,                  // 傳送資料到指定的 url
     dataType: "json",             // 預期會接收到回傳資料的格式： json | xml | html
@@ -43,9 +58,10 @@ function setTable() {
       var num = 0;
       $.each(data, function (index, item) {
         item.rs_seat_xy = item.rs_seat_xy.split(",");
-
+        let rs_top= item.rs_seat_xy[0]-90;
+        let rs_left= item.rs_seat_xy[1]-40;
         list_html += '<div data-id="' + item.rs_id + '" data-sieral="' + item.rs_seat_sieral + '" data-xy="' + item.rs_seat_xy + '">';
-        list_html += '<div class="Myclass" style=" width: 100px; height:100px; position:absolute; top : ' + item.rs_seat_xy[0] + 'px ; left : ' + item.rs_seat_xy[1] + 'px; border-radius: 50%; background: linear-gradient(to right, #c02425, #f0cb35); ">' + (++num) + '';
+        list_html += '<div class="Myclass" style=" width: 100px; height:100px; position:absolute; top : ' + rs_top + 'px ; left : ' + rs_left + 'px; border-radius: 50%; background:rgb(255, 255, 255);border: 1px solid #000000; ">' + (++num) + '';
         list_html += '</div>';
         list_html += '</div>';
 
@@ -67,7 +83,7 @@ function init() {
   let jsonString = JSON.stringify(form_date);
 
   $.ajax({
-    url: "/TEA102G1/Booking_Fixed_Table_List_Ajax.do",           // 資料請求的網址
+    url: "/"+projectName[1]+"/Booking_Fixed_Table_List_Ajax.do",           // 資料請求的網址
     type: "POST",                  // GET | POST | PUT | DELETE | PATCH
     data: jsonString,                  // 傳送資料到指定的 url
     dataType: "json",             // 預期會接收到回傳資料的格式： json | xml | html
@@ -116,6 +132,8 @@ function show() {
   $(".title_header_papa").css("display", "block");
   $(".drag_drop").css("display", "block");
   $(".task_container").css("display", "block");
+  $("#navbar_bs").fadeIn(1000);
+  $("#navbar_bs").css("display", "block");
   init();
   setTable();
 
@@ -155,7 +173,7 @@ function show() {
       let jsonString = JSON.stringify(obj);
       // console.log(jsonString);
       $.ajax({
-        url: "/TEA102G1/Booking_Fixed_Table_Add_Ajax.do",//資料請求網址
+        url: "/"+projectName[1]+"/Booking_Fixed_Table_Add_Ajax.do",//資料請求網址
         type: "POST",
         data: jsonString,
         dataType: "json",
@@ -220,7 +238,7 @@ $("ul.task_list").on("click", "button.btn_delete", function () {
         btnClass: 'btn-red',
         action: function () {
           $.ajax({
-            url: "/TEA102G1/Booking_Fixed_Table_Del_Ajax.do",           // 資料請求的網址
+            url: "/"+projectName[1]+"/Booking_Fixed_Table_Del_Ajax.do",           // 資料請求的網址
             type: "POST",                  // GET | POST | PUT | DELETE | PATCH
             data: jsonString,                  // 傳送資料到指定的 url
             //processData: false,
@@ -322,7 +340,7 @@ $("ul.task_list").on("click", "button.btn_update", function () {
       let jsonString = JSON.stringify(form_date);
 
       $.ajax({
-        url: "/TEA102G1/Booking_Fixed_Table_Update_Ajax.do",           // 資料請求的網址
+        url: "/"+projectName[1]+"/Booking_Fixed_Table_Update_Ajax.do",           // 資料請求的網址
         type: "POST",                  // GET | POST | PUT | DELETE | PATCH
         data: jsonString,                  // 傳送資料到指定的 url
         //processData: false,

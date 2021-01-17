@@ -16,6 +16,8 @@ import org.json.JSONObject;
 
 import com.booking_fixed_table.model.Booking_Fixed_TableService;
 import com.booking_fixed_table.model.Booking_Fixed_TableVO;
+import com.booking_ing_table.model.Booking_Ing_TableService;
+import com.booking_ing_table.model.Booking_Ing_TableVO;
 
 @WebServlet(urlPatterns = { "/Booking_Fixed_Table_Del_Ajax.do" })
 public class Booking_Fixed_Table_Del_Ajax extends HttpServlet {
@@ -48,6 +50,10 @@ public class Booking_Fixed_Table_Del_Ajax extends HttpServlet {
 		System.out.println("rs_sieral=" + rs_sieral);
 
 		/*************************** 2.開始刪除資料 ***************************************/
+		Booking_Ing_TableService Booking_Ing_TableSvc =  new Booking_Ing_TableService();
+		Booking_Ing_TableVO booking_Ing_TableVO = Booking_Ing_TableSvc.findByOrderID(rs_sieral);
+		String order_id= booking_Ing_TableVO.getOrder_id();
+		Booking_Ing_TableSvc.delete(order_id);
 		Booking_Fixed_TableService booking_Fixed_TableSvc = new Booking_Fixed_TableService();
 		booking_Fixed_TableSvc.delete(rs_sieral);
 

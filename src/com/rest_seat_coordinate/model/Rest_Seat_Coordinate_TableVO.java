@@ -10,7 +10,7 @@ import java.sql.Date;
 
 import com.rest_table.model.Rest_TableVO;
 
-public class Rest_Seat_Coordinate_TableVO implements Serializable{
+public class Rest_Seat_Coordinate_TableVO extends Rest_TableVO{
 	public Rest_Seat_Coordinate_TableVO() {
 		
 		

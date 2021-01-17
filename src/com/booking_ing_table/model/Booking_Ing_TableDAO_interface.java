@@ -20,7 +20,7 @@ public interface Booking_Ing_TableDAO_interface {
 	public List<Booking_Ing_TableVO> findByPrimaryKey_Status(Integer rs_status);
 
 	public List<Booking_Ing_Table_OrderVO> get_all_table_seat(String rs_id, Integer rs_table_seat, Integer rs_status,
-			String gs_select_time, Date gs_select_date);
+			String rs_open_time, Date rs_reg_date);
 
 	public Booking_Ing_TableVO findByOrderID(String rs_sieral);
 
@@ -28,6 +28,8 @@ public interface Booking_Ing_TableDAO_interface {
 			Booking_Ing_TableVO updateBooking_Ing_TableVO);
 
 	public void update_Order_Status(Booking_Ing_TableVO updateBooking_Ing_TableVO, Connection con);
+
+	public void delete(String order_id);
 
 
 

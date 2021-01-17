@@ -93,3 +93,30 @@
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACGUlEQVRIibWVPW7bQBCFv1moEHQAQYCd1lRBqAgQJG0KHiIHEQ8h3SN3MFimUKfCIBDJbRxASR0IKoR9KZak+W8nQabRcHbmzZsn7tAAx3+0EtwPnNfj3i/XTtHateNjvmsFfMsvwbyidGGwE7bTMl305fT5VgvWp2pMpChdCDJMcQhYDkrccXsamLyyssGgKUrnQAbEQC4DgxgpBxI7bn+O1df/g7Z+vgC/V2AeACEBckEs7L7I6ZMXwLfZV4elLEIrw3KMxI6bkx02J0KTB9BKkPkoXQxN0CuRj9K5QYbxzPywaUihaB2kMxuVqy2RVwBvyhJYNya04/YkSJByYbGwTMuuXA32dVnA+sCb7I7bEyIBPYBiQVa8wl2JGrJIuSBxL7whFbG79RyzmqRK7BBqDXC6SycYO6G3hhXgmxPNOzHq+3ARM0GMaW/Ge/u6vboixWHMDNvzDN6WZXwlhJrEYG+qGlcSeS3TKR5vj5+L4qeh/TRgtw4MLT8hj3OPm2ujQUh6MwG+ABP49u5PJILbHXAFPsLTtYxPmiw0BVsBM7o7acx3YB9AZ7Ap8KvMqTdwYaCG/e23wnWcJivRivfuGTp3w+o10N1FGkp8pd8hNibRzez1CnUveelM+rME2I/il57JWmbt8+qL1qZ4AfZg55BcLxwCr4DPoVaXOuH6PSia3Thw03HAcrK6L8Bf4PuwXj3P/+z/BhArFTvuX/j5AAAAAElFTkSuQmCC") no-repeat left center transparent;
     background-size: 100% 100%;
 }
+
+/* 海報 */
+#sync2 .item {
+    background: #C9C9C9;
+    padding: 10px 0px;
+    margin: 5px;
+    color: #FFF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+  }
+  #sync2 .item h1 {
+    font-size: 18px;
+  }
+  #sync2 .current .item {
+    background: #0c83e7;
+  }
+  /*default owl-theme theme reset .disabled:hover links */
+  .owl-theme .owl-nav [class*='owl-'] {
+    transition: all .3s ease;
+  }
+  .owl-theme .owl-nav [class*='owl-'].disabled:hover {
+    background-color: #D6D6D6;
+  }
+  

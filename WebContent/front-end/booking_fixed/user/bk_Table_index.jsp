@@ -3,7 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="com.rest_table.model.Rest_TableVO"%>
 <%@ page import="java.util.*"%>
-<%     session.setAttribute("rs_id", "RS10001"); 
+<%     
+String rs_id = (String)session.getAttribute("rs_id");
+if(rs_id==null){
+	session.setAttribute("rs_id", "RS10001");
+	rs_id ="RS10001";
+}
 		int i = 1;
 %>
 <%-- <%String rs_id = session.getAttribute("rs_id",rs_id); %> --%>
@@ -27,6 +32,7 @@
 </head>
 
 <body>
+
 	<div class="wrapper">
 			<div class="inner">
 				<span>讀</span> 
@@ -34,11 +40,38 @@
 				<span>中</span>
 			</div>
 	</div>
-
+	<nav class="navbar navbar-expand-lg shadow navbar-light bg-light" id="navbar_bs" style="
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    display: none;
+    ">
+  <a class="navbar-brand" href="<%=request.getContextPath() %>/front-end/Guest_Table/home.jsp"><img style="width: 120px;" alt="" src="<%=request.getContextPath() %>/front-end/booking_fixed/images/g11.jpg"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+<!--     <ul class="navbar-nav"> -->
+<!--       <li class="nav-item active"> -->
+<!--         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+<!--       </li> -->
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link" href="#">Features</a> -->
+<!--       </li> -->
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link" href="#">Pricing</a> -->
+<!--       </li> -->
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+<!--       </li> -->
+<!--     </ul> -->
+  </div>
+</nav>
 
 	<div class="title_header_papa" style="display: none;"><h1 class="title_header">餐廳桌子平面圖</h1></div>
+<!-- 	<div style="width: 200px;height: 300px"></div> -->
 	<div class="drag_drop" style="display: none;">
-		<div class="tab_panel drop_panel" id="html-content-holder">
+		<div class="tab_panel drop_panel shadow" id="html-content-holder">
 			
 			<ul class="drop_ul"></ul>
 		</div>

@@ -4,7 +4,11 @@
 <%@page import="com.rest_table.model.Rest_TableVO"%>
 <%@ page import="com.rest_seat_coordinate.model.*"%>
 <%
+String rs_id = (String)session.getAttribute("rs_id");
+if(rs_id==null){
 	session.setAttribute("rs_id", "RS10001");
+	rs_id ="RS10001";
+}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +64,7 @@
 			<label for="control-label1">人數</label> 
 			<select name="rs_table_seat" multiple
 				class="form-control" id="control-label1" style="width: 200px;">
-				<option value="1">1</option>
+				<option value="1" selected="selected">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 				<option value="4">4</option>

@@ -3,6 +3,7 @@ package com.booking_fixed_table.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,10 @@ import org.json.JSONObject;
 
 import com.booking_fixed_table.model.Booking_Fixed_TableService;
 import com.booking_fixed_table.model.Booking_Fixed_TableVO;
+import com.booking_ing_table.model.Booking_Ing_TableService;
 import com.booking_ing_table.model.Booking_Ing_TableVO;
+import com.booking_ing_table.model.Booking_Ing_Table_JdbcDAO;
+import com.order_table.model.Order_TableVO;
 
 @WebServlet(urlPatterns = { "/Booking_Fixed_Table_Add_Ajax.do" })
 public class Booking_Fixed_Table_Add_Ajax extends HttpServlet {
@@ -51,13 +55,20 @@ public class Booking_Fixed_Table_Add_Ajax extends HttpServlet {
 
 		System.out.println("rs_seat_sieral:" + jsonObject.getString("rs_seat_sieral"));
 		System.out.println("RS_TABLE_SEAT:" + jsonObject.getString("rs_table_seat"));
-
+		//新增booking_Ing_TableVO 資料
+		List<Booking_Ing_TableVO> booking_Ing_TableList = new ArrayList<Booking_Ing_TableVO>();
+		Booking_Ing_TableVO booking_Ing_TableVO =new Booking_Ing_TableVO();
+		booking_Ing_TableVO.setRs_status(1);
+		booking_Ing_TableVO.setGs_select_date(new java.sql.Date(System.currentTimeMillis()));
+		booking_Ing_TableList.add(booking_Ing_TableVO);
+		
 		String rs_seat_sieral = jsonObject.getString("rs_seat_sieral");
 		String rs_table_number = "1";
 		Integer rs_table_seat = new Integer(jsonObject.getString("rs_table_seat"));
 		Booking_Fixed_TableService booking_FixedSvc = new Booking_Fixed_TableService();
-		Booking_Fixed_TableVO booking_Fixed_TableVO = booking_FixedSvc.addbooking_fixed_table(rs_table_number,
-				rs_table_seat, rs_seat_sieral);
+		Booking_Fixed_TableVO booking_Fixed_TableVO = booking_FixedSvc.insertwithorder(rs_table_number, rs_table_seat, rs_seat_sieral, booking_Ing_TableList);
+//		Booking_Fixed_TableVO booking_Fixed_TableVO = booking_FixedSvc.addbooking_fixed_table(rs_table_number, rs_table_seat, rs_seat_sieral);
+		
 		// 取出所有資料
 		List<Booking_Fixed_TableVO> list = booking_FixedSvc.getAll();
 		// 取出最後一筆

@@ -26,3 +26,6 @@ for(let i = 0 ; i<buttons.length;i++){
 $("#send").on("click",function(){
 	  swal("設定成功", "歡迎你下次再使用本平台訂位謝謝", "success");
 	});
+$("#callback").on("click",function(){
+	  swal("設定成功", "歡迎你下次再使用本平台訂位謝謝", "success");
+	});
